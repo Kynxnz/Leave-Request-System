@@ -1,0 +1,1 @@
+@extends('layouts.app') @section('title','Access denied') @section('guest')<div class="auth-page"><div class="auth-card text-center"><span class="error-code">403</span><h1>Access denied</h1><p>You don't have permission to access this page.</p><a class="button primary" href="{{ auth()->check()?route('dashboard'):route('login') }}">Go back</a></div></div>@endsection

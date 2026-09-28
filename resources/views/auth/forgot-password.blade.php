@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title','Forgot Password')
+@section('guest')<div class="auth-page"><div class="auth-card"><div class="auth-brand"><span class="brand-mark">LR</span><div><strong>LeaveFlow</strong><small>Password recovery</small></div></div><div class="auth-head"><h1>Forgot your password?</h1><p>Enter your email and we'll send a reset link.</p></div><form method="POST" action="{{ route('password.email') }}">@csrf<div class="field"><label>Email address</label><input type="email" name="email" value="{{ old('email') }}" required autofocus></div><button class="primary button full">Send Reset Link</button></form><p class="auth-footer"><a href="{{ route('login') }}">Back to Sign In</a></p></div></div>@endsection
