@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use Illuminate\Support\Str;
-
-
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -21,11 +18,6 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return ['email_verified_at' => 'datetime', 'password' => 'hashed'];
-    }
-
-    protected static function booted(): void
-    {
-        static::creating(fn (User $user) => $user->calendar_token ??= Str::random(40));
     }
 
     public function manager(): BelongsTo { return $this->belongsTo(User::class, 'manager_id'); }

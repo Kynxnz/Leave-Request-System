@@ -19,11 +19,10 @@ Route::middleware('guest')->group(function(){
     Route::get('/reset-password/{token}',[AuthController::class,'showReset'])->name('password.reset');
     Route::post('/reset-password',[AuthController::class,'reset'])->name('password.update');
 });
-Route::get('/calendar/feed/{token}',[CalendarController::class,'feed'])->where('token','[A-Za-z0-9]+')->name('calendar.feed');
-
 Route::middleware('auth')->group(function(){
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard',[DashboardController::class,'index']);
     Route::get('/leave-requests',[LeaveRequestController::class,'index'])->name('leave-requests.index');
     Route::get('/leave-requests/create',[LeaveRequestController::class,'create'])->name('leave-requests.create');
     Route::post('/leave-requests',[LeaveRequestController::class,'store'])->name('leave-requests.store');

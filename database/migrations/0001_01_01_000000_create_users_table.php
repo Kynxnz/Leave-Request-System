@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('role')->default('Staff')->index();
             $table->foreignId('manager_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('status')->default('active')->index();
-            $table->string('calendar_token', 64)->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

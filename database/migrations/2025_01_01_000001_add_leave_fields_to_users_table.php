@@ -9,18 +9,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('employee'); // employee | manager | hr
-            $table->foreignId('manager_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('calendar_token', 64)->nullable()->unique();
+            if (! Schema::hasColumn('users', 'role')) {
+                $table->string('role')->default('Staff')->index();
+            }
+            if (! Schema::hasColumn('users', 'manager_id')) {
+                $table->foreignId('manager_id')->nullable()->constrained('users')->nullOnDelete();
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropUnique(['calendar_token']);
-            $table->dropConstrainedForeignId('manager_id');
-            $table->dropColumn(['role', 'calendar_token']);
+            if (Schema::hasColumn('users', 'manager_id')) {
+                $table->dropConstrainedForeignId('manager_id');
+            }
+            if (Schema::hasColumn('users', 'role')) {
+                $table->dropColumn('role');
+            }
         });
     }
 };

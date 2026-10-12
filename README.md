@@ -36,4 +36,3 @@ The included `.env.example` uses SQLite and `MAIL_MAILER=log`, so password-reset
 - Search, filters, pagination
 - Leave types
 - Responsive dashboard and calendar
-- Private iCalendar feed for the user's approved leave
